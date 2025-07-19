@@ -1,0 +1,27 @@
+1) On the Raw Data Kappa score is 0.2
+
+1) Multi platform support
+2) Environment support
+3) Multi platform
+4) Install Dependencies and Testing
+5) Environment Support + Install Dependencies
+6) Multi Platform support
+7) 
+
+
+
+
+1) Mobile Cross Platform Build
+2) Multi-Platform Build
+3) Environment Setup
+4) Environment Setup + Testing
+5) Environment Setup + CI Setup
+6) CI/CD Systems and Automation
+7) CI/CD with Shell Script
+8) CI/CD Kubernetes Daemon
+9) Testing
+10) Build Support
+11) Docker Deployment
+12) Kubernetes Deployment
+13) Simulation / Special Env
+14) ML/AI Support
