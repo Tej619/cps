@@ -1,1 +1,2 @@
 https://github.com/COVESA/vsomeip
+https://github.com/bytecodealliance/wasm-micro-runtime
