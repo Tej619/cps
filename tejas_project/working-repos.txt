@@ -1,0 +1,3 @@
+https://github.com/COVESA/vsomeip
+https://github.com/InfiniTimeOrg/InfiniTime
+https://github.com/LibreELEC/LibreELEC.tv

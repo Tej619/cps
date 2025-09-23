@@ -1,0 +1,40 @@
+BEGIN {
+  printf("Tracing docker run (syscalls, files, net)...\n");
+}
+
+/* Detect docker run */
+tracepoint:syscalls:sys_enter_execve
+/str(args->argv[0]) == "docker" && str(args->argv[1]) == "run"/
+{
+  @docker_run[pid] = 1;
+  printf("docker run detected (PID=%d)\n", pid);
+}
+
+/* Track children */
+tracepoint:sched:sched_process_fork
+/@docker_run[args->parent_pid] || @trace_pids[args->parent_pid]/
+{
+  @trace_pids[args->child_pid] = 1;
+  printf("Tracking child %d (parent=%d)\n", args->child_pid, args->parent_pid);
+}
+
+/* --- Syscalls --- */
+tracepoint:syscalls:sys_enter_*
+/@docker_run[pid] || @trace_pids[pid]/
+{
+  printf("[SYSCALL] PID=%d COMM=%s -> %s\n", pid, comm, probe);
+}
+
+/* --- File opens --- */
+tracepoint:syscalls:sys_enter_openat
+/@docker_run[pid] || @trace_pids[pid]/
+{
+  printf("[FILE] PID=%d COMM=%s openat: %s\n", pid, comm, str(args->filename));
+}
+
+/* --- Network connects --- */
+tracepoint:syscalls:sys_enter_connect
+/@docker_run[pid] || @trace_pids[pid]/
+{
+  printf("[NET] PID=%d COMM=%s connect()\n", pid, comm);
+}
