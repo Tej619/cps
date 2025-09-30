@@ -1,2 +1,1 @@
-https://github.com/COVESA/vsomeip
-https://github.com/bytecodealliance/wasm-micro-runtime
+https://github.com/Fraunhofer-AISEC/gallia
